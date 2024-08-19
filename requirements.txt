@@ -1,7 +1,9 @@
-python==3.12
-langchain
 huggingface_hub
+streamlit
+langchain
+langchain_community
+langchain_huggingface
+python-dotenv
 faiss-cpu
-sentence_transformers
 wikipedia
-dotenv
+pillow
