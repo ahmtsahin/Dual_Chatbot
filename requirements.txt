@@ -6,3 +6,4 @@ pillow
 transformers
 sentence_transformers
 wikipedia
+langchain_community
