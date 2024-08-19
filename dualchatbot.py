@@ -16,7 +16,7 @@ login(api_key)
 
 
 # This info's at the top of each HuggingFace model page
-hf_model = "mistralai/Mistral-7B-Instruct-v0.3"
+hf_model = "mistralai/Mistral-7B-Instruct-v0.2"
 #hf_model="meta-llama/Meta-Llama-3.1-8B-Instruct"
 
 llm = HuggingFaceEndpoint(repo_id = hf_model)
