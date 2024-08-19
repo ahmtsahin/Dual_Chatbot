@@ -112,8 +112,8 @@ chain_arsenal = ConversationalRetrievalChain.from_llm(llm, retriever=retriever_a
 
 from PIL import Image
 st.title("Who is better???")
-man_utd_crest = Image.open("D:/Beelink/WBS Data Science/Week 9-Generetive AI/Manchester_United.png")
-arsenal_crest = Image.open("D:/Beelink/WBS Data Science/Week 9-Generetive AI/Arsenal_FC.png")
+man_utd_crest = Image.open("data/Manchester_United.png")
+arsenal_crest = Image.open("data/Arsenal_FC.png")
 
 col1, col2 = st.columns(2)
 
