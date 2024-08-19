@@ -5,9 +5,15 @@ import threading
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
+from dotenv import load_dotenv
+import os
 
-    # Authenticate with Hugging Face
-login("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")
+# Load environment variables from the key.env file
+load_dotenv(dotenv_path='key.env')
+api_key = os.getenv('MY_API_KEY')
+    
+# Authenticate with Hugging Face
+login(api_key)
 from langchain_huggingface import HuggingFaceEndpoint
 
     # This info's at the top of each HuggingFace model page
