@@ -243,7 +243,7 @@ if st.button("Start 2-minute conversation"):
         update_chat(col1, st.session_state.messages1, "system", man_utd_question)
         man_utd_answer = get_team_response(chain_man_utd, "Man United", man_utd_question, st.session_state.man_utd_responses)
         update_chat(col1, st.session_state.messages1, "assistant", man_utd_answer)
-        time.sleep(4)
+        time.sleep(2)
         
         turn = 0
         while time.time() - start_time < 120:
@@ -259,6 +259,6 @@ if st.button("Start 2-minute conversation"):
                 update_chat(col1, st.session_state.messages1, "assistant", man_utd_answer)
             
             turn += 1
-            time.sleep(4)
+            time.sleep(2)
         
         st.write("Conversation ended after 2 minutes.")
