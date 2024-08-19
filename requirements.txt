@@ -1,9 +1,6 @@
-streamlit
 langchain
 huggingface_hub
 faiss-cpu
-pillow
-transformers
 sentence_transformers
 wikipedia
 dotenv
