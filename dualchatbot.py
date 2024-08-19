@@ -28,15 +28,13 @@ from langchain_community.document_loaders import WikipediaLoader
 
     # embeddings
 embedding_model = "sentence-transformers/all-MiniLM-L6-v2"
-with tempfile.TemporaryDirectory() as embeddings_folder, tempfile.TemporaryDirectory() as folder_arsenal:
-    embeddings_stat = HuggingFaceEmbeddings(
-        model_name=embedding_model,
-        cache_folder=embeddings_folder
-    )
-    embeddings_arsenal = HuggingFaceEmbeddings(
-        model_name=embedding_model,
-        cache_folder=folder_arsenal
-    )
+embeddings_folder = "data/manu"
+folder_arsenal = "data/arsenal"
+
+embeddings_stat = HuggingFaceEmbeddings(model_name=embedding_model,
+                                   cache_folder=embeddings_folder)
+embeddings_arsenal = HuggingFaceEmbeddings(model_name=embedding_model,
+                                   cache_folder=folder_arsenal)
 
 
 
