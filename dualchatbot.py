@@ -35,9 +35,11 @@ embeddings_stat = HuggingFaceEmbeddings(model_name=embedding_model,
                                    cache_folder=embeddings_folder)
 embeddings_arsenal = HuggingFaceEmbeddings(model_name=embedding_model,
                                    cache_folder=folder_arsenal)
-    
-vector_db_arsenal = FAISS.load_local("D:/Beelink/WBS Data Science/Week 9-Generetive AI/arsenal/faiss_index", embeddings_arsenal, allow_dangerous_deserialization=True)    
-vector_db_stat = FAISS.load_local("D:/Beelink/WBS Data Science/Week 9-Generetive AI/manu/faiss_index", embeddings_stat, allow_dangerous_deserialization=True)    
+
+
+
+vector_db_arsenal = FAISS.load_local("data/arsenal/faiss_index", embeddings_arsenal, allow_dangerous_deserialization=True)    
+vector_db_stat = FAISS.load_local("data/manu/faiss_index", embeddings_stat, allow_dangerous_deserialization=True)    
 
 
 retriever_arsenal = vector_db_arsenal.as_retriever(search_kwargs={"k": 4})
