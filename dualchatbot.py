@@ -1,10 +1,9 @@
 from huggingface_hub import login
 import streamlit as st
 import time
-import threading
-from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEndpoint
 from dotenv import load_dotenv
 import os
 
@@ -14,19 +13,16 @@ api_key = os.getenv('MY_API_KEY')
     
 # Authenticate with Hugging Face
 login(api_key)
-from langchain_huggingface import HuggingFaceEndpoint
 
-    # This info's at the top of each HuggingFace model page
+
+# This info's at the top of each HuggingFace model page
 hf_model = "mistralai/Mistral-7B-Instruct-v0.3"
-    #hf_model="meta-llama/Meta-Llama-3.1-8B-Instruct"
+#hf_model="meta-llama/Meta-Llama-3.1-8B-Instruct"
 
 llm = HuggingFaceEndpoint(repo_id = hf_model)
-from langchain_community.document_loaders import WikipediaLoader
+
     
-
-
-
-    # embeddings
+# embeddings
 embedding_model = "sentence-transformers/all-MiniLM-L6-v2"
 embeddings_folder = "data/manu"
 folder_arsenal = "data/arsenal"
@@ -234,7 +230,7 @@ def get_team_response(chain, team_name, question, previous_responses):
 
 
 
-# In your main code, add these lines:
+
 st.session_state.arsenal_responses = []
 st.session_state.man_utd_responses = []
 
