@@ -27,14 +27,17 @@ from langchain_community.document_loaders import WikipediaLoader
 
 
     # embeddings
-embedding_model = "D:/Beelink/WBS Data Science/Week 9-Generetive AI/sentence-transformers/all-MiniLM-l6-v2"
-embeddings_folder = "D:/Beelink/WBS Data Science/Week 9-Generetive AI/manu"
-folder_arsenal = "D:/Beelink/WBS Data Science/Week 9-Generetive AI/arsenal"
+embedding_model = "sentence-transformers/all-MiniLM-L6-v2"
+with tempfile.TemporaryDirectory() as embeddings_folder, tempfile.TemporaryDirectory() as folder_arsenal:
+    embeddings_stat = HuggingFaceEmbeddings(
+        model_name=embedding_model,
+        cache_folder=embeddings_folder
+    )
+    embeddings_arsenal = HuggingFaceEmbeddings(
+        model_name=embedding_model,
+        cache_folder=folder_arsenal
+    )
 
-embeddings_stat = HuggingFaceEmbeddings(model_name=embedding_model,
-                                   cache_folder=embeddings_folder)
-embeddings_arsenal = HuggingFaceEmbeddings(model_name=embedding_model,
-                                   cache_folder=folder_arsenal)
 
 
 
