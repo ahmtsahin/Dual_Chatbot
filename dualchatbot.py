@@ -213,7 +213,7 @@ def get_team_response(chain, team_name, question, previous_responses):
             previous_responses.append(short_response)
             return f"{team_name} fan: {short_response}"
 
-    # Fallback responses (same as before)
+    # Fallback responses 
     fallback_responses = {
         "Man United": [
             "While that's debatable, let's not forget our 20 Premier League titles - a record in English football.",
