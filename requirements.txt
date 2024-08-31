@@ -7,5 +7,4 @@ python-dotenv
 faiss-cpu
 wikipedia
 pillow
-re
-random
+
