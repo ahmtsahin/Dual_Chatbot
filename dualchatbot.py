@@ -6,15 +6,6 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_huggingface import HuggingFaceEndpoint
 from dotenv import load_dotenv
 import os
-from langchain.memory import ConversationBufferMemory
-from langchain.chains import ConversationalRetrievalChain
-from langchain_core.prompts import PromptTemplate
-from PIL import Image
-import random
-import re
-
-
-
 
 # Load environment variables from the key.env file
 load_dotenv(dotenv_path='key.env')
@@ -25,7 +16,7 @@ login(api_key)
 
 
 # This info's at the top of each HuggingFace model page
-hf_model = "mistralai/Mistral-7B-Instruct-v0.3"
+hf_model = "mistralai/Mistral-7B-Instruct-v0.2"
 #hf_model="meta-llama/Meta-Llama-3.1-8B-Instruct"
 
 llm = HuggingFaceEndpoint(repo_id = hf_model)
@@ -42,6 +33,8 @@ embeddings_arsenal = HuggingFaceEmbeddings(model_name=embedding_model,
                                    cache_folder=folder_arsenal)
 
 
+
+
 vector_db_arsenal = FAISS.load_local("data/arsenal/faiss_index", embeddings_arsenal, allow_dangerous_deserialization=True)    
 vector_db_stat = FAISS.load_local("data/manu/faiss_index", embeddings_stat, allow_dangerous_deserialization=True)    
 
@@ -51,7 +44,9 @@ retriever_arsenal = vector_db_arsenal.as_retriever(search_kwargs={"k": 4})
 retriever = vector_db_stat.as_retriever(search_kwargs={"k": 4})
 
 
-
+from langchain.memory import ConversationBufferMemory
+from langchain.chains import ConversationalRetrievalChain
+from langchain_core.prompts import PromptTemplate
 
 memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True, output_key='answer')
 memory2 = ConversationBufferMemory(memory_key='chat_history', return_messages=True, output_key='answer')
@@ -111,7 +106,7 @@ prompt_arsenal = PromptTemplate(template=template_arsenal, input_variables=["con
 chain_man_utd = ConversationalRetrievalChain.from_llm(llm, retriever=retriever, memory=memory, return_source_documents=False, combine_docs_chain_kwargs={"prompt": prompt_man_utd})
 chain_arsenal = ConversationalRetrievalChain.from_llm(llm, retriever=retriever_arsenal, memory=memory2, return_source_documents=False, combine_docs_chain_kwargs={"prompt": prompt_arsenal})
 
-
+from PIL import Image
 st.title("Who is better???")
 man_utd_crest = Image.open("data/Manchester_United.png")
 arsenal_crest = Image.open("data/Arsenal_FC.png")
@@ -151,6 +146,7 @@ with col2:
 
 conversation_placeholder = st.empty()
 
+import random
 
 def truncate_response(response, max_words=200):
     words = response.split()
@@ -173,7 +169,7 @@ def response_relevance(response, question):
     overlap = len(response_words.intersection(question_words))
     return overlap / len(question_words) if question_words else 0
 
-
+import re
 def get_team_response(chain, team_name, question, previous_responses):
     max_attempts = 3
     for _ in range(max_attempts):
