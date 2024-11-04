@@ -8,8 +8,7 @@ from dotenv import load_dotenv
 import os
 
 # Load environment variables from the key.env file
-load_dotenv(dotenv_path='key.env')
-api_key = os.getenv('MY_API_KEY')
+api_key = os.environ.get('HUGGINGFACE_API_KEY')
     
 # Authenticate with Hugging Face
 login(api_key)
